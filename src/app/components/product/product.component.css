@@ -1,0 +1,33 @@
+.product {
+  display: flex;
+  margin: 3rem 0;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.product__img {
+  width: 150px;
+  height: 150px;
+  background-color: #f7f7f7;
+}
+
+.product__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+  margin-left: 2rem;
+}
+
+.product__info__action {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 1rem;
+}
+
+.product__info__action button {
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+}
+

@@ -1,1 +1,5 @@
-<p>basket works!</p>
+<h2>Basket</h2>
+
+<div *ngFor="let order of orders$ | async">
+    {{ order | json }}
+</div>

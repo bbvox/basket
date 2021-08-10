@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { Observable } from 'rxjs';
+
+import { Product } from '@app/models';
+import { ProductService } from '@app/services';
 
 @Component({
   selector: 'app-product-list',
@@ -7,12 +10,11 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  private products;
+  products$: Observable<Product[]>;
+
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService
-      .get()
-      .subscribe((products) => (this.products = products));
+    this.products$ = this.productService.get();
   }
 }

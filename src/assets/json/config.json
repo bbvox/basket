@@ -1,3 +1,5 @@
 {
-    "baseUrl": "./assets/json/"
+  "baseUrl": "./assets/json/",
+  "currency": "GBP",
+  "currencySign": "&#163;"
 }

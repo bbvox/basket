@@ -1,0 +1,12 @@
+main {
+    display: flex;
+}
+
+main app-product-list {
+    flex-grow: 3;
+}
+
+main app-basket {
+    flex-grow: 1;
+    background-color: burlywood;
+}

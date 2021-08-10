@@ -1,1 +1,13 @@
-<p>product works!</p>
+<div class="product">
+    <div class="product__img"></div>
+    <div class="product__info">
+        <h4>{{product.name}}</h4>
+        <div class='product__info__action'>
+            <span>Price: {{product.price}}</span>
+            <div>
+                <button (click)="onAdd(product.id)">Add</button>
+                <button (click)="onRemove(product.id)">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
