@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product, Order } from '@app/models';
 
-import { OrderService } from '@app/services';
+import { OrderService, ProductService } from '@app/services';
 
 @Component({
   selector: 'app-basket',
@@ -11,10 +11,19 @@ import { OrderService } from '@app/services';
 })
 export class BasketComponent implements OnInit {
   orders$: Observable<Order[]>;
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
     this.orders$ = this.orderService.getAsObservable();
   }
 
+  onAdd(productId: string) {
+    const product = this.productService.getById(productId);
+    this.orderService.add(product);
+  }
+
+  onRemove(productId: string) {
+    this.orderService.remove(productId);
+  }
 }

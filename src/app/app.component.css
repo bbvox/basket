@@ -9,4 +9,5 @@ main app-product-list {
 main app-basket {
     flex-grow: 1;
     background-color: burlywood;
+    padding: 0 1rem;
 }

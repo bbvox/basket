@@ -17,12 +17,10 @@ export class ProductComponent {
 
   onAdd(productId: string) {
     const product = this.productService.getById(productId);
-    console.log('add Product to basket : ', product);
     this.orderService.add(product);
   }
 
   onRemove(productId: string) {
-    console.log('add Product to basket : ', productId);
     this.orderService.remove(productId);
   }
 }

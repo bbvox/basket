@@ -1,0 +1,15 @@
+.order {
+    border: 1px solid #fefefe;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+}
+
+.order__action {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order__action button {
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+}
