@@ -8,10 +8,8 @@ export enum Unit {
 }
 
 export interface Product extends Base {
-  description: string;
   position: number;
   available: boolean;
   price: number;
-  currency: string;
   unit: Unit;
 }
