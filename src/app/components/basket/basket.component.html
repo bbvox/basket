@@ -3,8 +3,7 @@
 <div *ngFor="let order of orders$ | async" class="order">
     <p>{{order.total}} * {{order.name}}</p>
     <div class='order__action'>
-        <span>Price: {{order.totalPrice}}</span>
-        <span>Price: {{order.totalPrice2}}</span>
+        <span>Price: {{order.totalPrice | number: '1.2'}} &#163;</span>
         <div>
             <button (click)="onAdd(order.productId)">+</button>
             <button (click)="onRemove(order.productId)">-</button>

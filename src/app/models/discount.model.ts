@@ -1,5 +1,10 @@
 import { Unit } from './product.model';
 
+export enum DiscountType {
+    DATE = 'date',
+    QUANTITY = 'quantity',
+  }
+
 interface ByDate {
   endDate: number;
   unit: Unit;
@@ -8,11 +13,12 @@ interface ByDate {
 interface ByQuantity {
   minimum: number;
   unit: Unit;
-  discountUnit: Unit;
+  requiredUnit: Unit;
 }
 
 export interface Discount {
-  type: 'date' | 'quantity';
-  data: ByDate | ByQuantity;
-  discount: number;
+  type: DiscountType;
+  byDate?: ByDate;
+  byQuantity?: ByQuantity;
+  discountRate: number;
 }

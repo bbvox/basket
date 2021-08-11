@@ -1,7 +1,9 @@
 .order {
-    border: 1px solid #fefefe;
+    border: 1px solid #eeeeee;
+    border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     margin: 1rem 0;
+    background-color: #ffffff;
 }
 
 .order__action {

@@ -8,6 +8,8 @@ main app-product-list {
 
 main app-basket {
     flex-grow: 1;
-    background-color: burlywood;
+    background-color: #f9f9f9;
     padding: 0 1rem;
+    margin: 0 1rem;
+    min-width: 24rem;
 }
