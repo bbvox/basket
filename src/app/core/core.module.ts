@@ -6,11 +6,32 @@ import {
   ModuleWithProviders,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
+import { Config } from './config.model';
+
+export let config: Config;
+
+export const getConfig = (): Config => {
+  if (!config) {
+    throw new Error('config has not been set');
+  }
+
+  return config;
+};
+
+export const initConfig = () => async () => {
+  const res = await fetch('assets/json/config.json');
+  config = await res.json();
+};
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
-  providers: [{ provide: 'Window', useValue: window }],
+  providers: [
+    { provide: Config, useFactory: getConfig },
+    { provide: APP_INITIALIZER, useFactory: initConfig, multi: true }
+  ],
+
   exports: [],
 })
 export class CoreModule {

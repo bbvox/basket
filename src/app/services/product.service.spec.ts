@@ -4,6 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 
+import { ConfigService } from '@app/core/config.service';
 import { ProductService } from './product.service';
 import { Product, Unit } from '@app/models';
 
@@ -23,10 +24,21 @@ describe('ProductService', () => {
     },
   ];
 
+  const configValue = {
+    baseUrl: './url/',
+    currency: 'GBP',
+    currencySign: '&#163;',
+  };
+  const configService = jasmine.createSpyObj('ConfigService', ['getConfig']);
+  configService.getConfig.and.returnValue(configValue);
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ProductService],
+      providers: [
+        ProductService,
+        { provide: ConfigService, useValue: configService },
+      ],
     });
     service = TestBed.inject(ProductService);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -35,7 +47,7 @@ describe('ProductService', () => {
   it('expect http request with Product result', () => {
     service.get().subscribe((products) => (result = products));
 
-    const req = httpTestingController.expectOne('assets/json/products.json');
+    const req = httpTestingController.expectOne('./url/products.json');
     expect(req.request.method).toEqual('GET');
     req.flush(resultsMock);
 
@@ -45,7 +57,7 @@ describe('ProductService', () => {
   it('expect to getById return exact product', () => {
     service.get().subscribe((products) => (result = products));
 
-    const req = httpTestingController.expectOne('assets/json/products.json');
+    const req = httpTestingController.expectOne('./url/products.json');
     req.flush(resultsMock);
 
     const product = service.getById(productIdMock);

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '@app/models';
+import { ConfigService } from '@app/core/config.service';
 import { OrderService, ProductService } from '@app/services';
 
 @Component({
@@ -9,11 +10,14 @@ import { OrderService, ProductService } from '@app/services';
 })
 export class ProductComponent {
   @Input() product: Product;
-
+  currencySign: string;
   constructor(
     private orderService: OrderService,
-    private productService: ProductService
-  ) {}
+    private productService: ProductService,
+    private configService: ConfigService
+  ) {
+    this.currencySign = this.configService.getConfig().currencySign;
+  }
 
   onAdd(productId: string) {
     const product = this.productService.getById(productId);

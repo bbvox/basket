@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Order } from '@app/models';
 
 import { OrderService, ProductService } from '@app/services';
+import { ConfigService } from '@app/core/config.service';
 
 @Component({
   selector: 'app-basket',
@@ -11,10 +12,14 @@ import { OrderService, ProductService } from '@app/services';
 })
 export class BasketComponent implements OnInit {
   orders$: Observable<Order[]>;
+  currencySign: string;
   constructor(
     private orderService: OrderService,
-    private productService: ProductService
-  ) {}
+    private productService: ProductService,
+    private configService: ConfigService
+  ) {
+    this.currencySign = this.configService.getConfig().currencySign;
+  }
 
   ngOnInit(): void {
     this.orders$ = this.orderService.getAsObservable();

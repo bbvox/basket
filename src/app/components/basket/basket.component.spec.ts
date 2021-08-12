@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { BasketComponent } from './basket.component';
 import { OrderService, ProductService } from '@app/services';
+import { ConfigService } from '@app/core/config.service';
 
 import { Unit } from '@app/models';
 
@@ -20,6 +21,7 @@ describe('BasketComponent', () => {
   };
   let productServiceMock: jasmine.SpyObj<ProductService>;
   let orderServiceMock: jasmine.SpyObj<OrderService>;
+  let configService: jasmine.SpyObj<ConfigService>;
 
   beforeEach(async () => {
     productServiceMock = jasmine.createSpyObj('ProductService', [
@@ -31,12 +33,19 @@ describe('BasketComponent', () => {
       'remove',
       'getAsObservable',
     ]);
+    configService = jasmine.createSpyObj('ConfigService', ['getConfig']);
+    configService.getConfig.and.returnValue({
+      baseUrl: './url/',
+      currency: 'GBP',
+      currencySign: '&#163;',
+    });
     await TestBed.configureTestingModule({
       declarations: [BasketComponent],
       imports: [HttpClientTestingModule],
       providers: [
         { provide: OrderService, useValue: orderServiceMock },
         { provide: ProductService, useValue: productServiceMock },
+        { provide: ConfigService, useValue: configService },
       ],
     }).compileComponents();
   });

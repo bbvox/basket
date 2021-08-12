@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Config } from './config.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
+  constructor(private config: Config) {}
 
-  constructor() { }
+  public getConfig() {
+    return this.config;
+  }
 }

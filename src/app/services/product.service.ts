@@ -4,16 +4,21 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { Product } from '@app/models';
+import { ConfigService } from '@app/core/config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   private products: Product[];
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private configService: ConfigService
+  ) {}
 
   get(): Observable<Product[]> {
-    const url = 'assets/json/products.json';
+    const config = this.configService.getConfig();
+    const url = `${config.baseUrl}products.json`;
     return this.httpClient
       .get<Product[]>(url)
       .pipe(tap((products) => (this.products = products)));

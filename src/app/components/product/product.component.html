@@ -3,7 +3,7 @@
     <div class="product__info">
         <h4>{{product.name}}</h4>
         <div class='product__info__action'>
-            <span>Price: {{product.price | number: '1.2'}} &#163;</span>
+            <span>Price: {{product.price | number: '1.2'}} <span [innerHTML]="currencySign"></span></span>
             <div>
                 <button (click)="onAdd(product.id)">Add</button>
                 <button (click)="onRemove(product.id)">Remove</button>
